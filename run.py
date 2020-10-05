@@ -15,7 +15,7 @@ def write_topics(repo, topiclist, dry_run):
 parser = argparse.ArgumentParser(
     description="Quickly add/remove the 'hacktoberfest' topic to all of your public Github projects"
 )
-parser.add_argument("action", type=str, help="'add' or 'remve' the topic", choices=["add", "remove"])
+parser.add_argument("action", type=str, help="'add' or 'remove' the topic", choices=["add", "remove"])
 parser.add_argument("--dry-run", action="store_true", help="Don't actually modify the topics")
 args = parser.parse_args()
 

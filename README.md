@@ -24,7 +24,7 @@ usage: run.py [-h] [--dry-run] {add,remove}
 Quickly add/remove the 'hacktoberfest' topic to all of your public Github projects
 
 positional arguments:
-  {add,remove}  'add' or 'remve' the topic
+  {add,remove}  'add' or 'remove' the topic
 
 optional arguments:
   -h, --help    show this help message and exit
