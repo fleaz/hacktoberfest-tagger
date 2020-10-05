@@ -13,8 +13,7 @@ First you need to go to the [Github developer settings](https://github.com/setti
 access token with the `public_repo` permission. The benefit of this in contrast to using your username&password is that
 the script only has the permissions it needs, and it also works when you have 2FA enabled (which you definitely should! ;)
 ) Then you need to install the "PyGithub" library. With pipenv installed you can run `pipenv install` in the repository
-folder to create a new virtual environment with all dependencies. When you want to use pip, run `pip install --user
-pygithub` or `pip install -r requirements.txt`.
+folder to create a new virtual environment with all dependencies. If you want to use **pip** you can run `pip install -r requirements.txt`.
 
 ## Usage
 ```
