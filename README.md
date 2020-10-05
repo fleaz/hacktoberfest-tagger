@@ -14,7 +14,7 @@ access token with the `public_repo` permission. The benefit of this in contrast 
 the script only has the permissions it needs, and it also works when you have 2FA enabled (which you definitely should! ;)
 ) Then you need to install the "PyGithub" library. With pipenv installed you can run `pipenv install` in the repository
 folder to create a new virtual environment with all dependencies. When you want to use pip, run `pip install --user
-pygithub`.
+pygithub` or `pip install -r requirements.txt`.
 
 ## Usage
 ```
