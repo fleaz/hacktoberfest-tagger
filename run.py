@@ -42,16 +42,12 @@ except BadCredentialsException:
 for repo in repositories:
     print(f"> Checking {repo.full_name}:")
 
-    if repo.private or repo.fork or repo.archived:
-        print("Repo is private, a fork or archived. Skipping...")
+    if repo.fork or repo.archived:
+        print("Repo is a fork or archived. Skipping...")
         continue
 
     if not args.organization and repo.organization is not None:
         print("Repo belongs to a organization. Skipping...")
-        continue
-
-    if not args.organization and repo.owner.id != user_id:
-        print("Repo does not belong to you. Skipping...")
         continue
 
     topic_list = repo.get_topics()
