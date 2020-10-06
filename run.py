@@ -50,6 +50,10 @@ for repo in repositories:
         print("Repo belongs to a organization. Skipping...")
         continue
 
+    if not repo.permissions.admin:
+        print("You don't have admin permissions on the repo. Skipping...")
+        continue
+
     topic_list = repo.get_topics()
 
     if "hacktoberfest" in topic_list and args.action == "remove":
