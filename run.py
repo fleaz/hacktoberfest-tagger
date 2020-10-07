@@ -16,6 +16,7 @@ parser = argparse.ArgumentParser(
     description="Quickly add/remove the 'hacktoberfest' topic to all of your public Github projects"
 )
 parser.add_argument("action", type=str, help="'add' or 'remove' the topic", choices=["add", "remove"])
+parser.add_argument("--organization", "-o", help="Modify topics for an organization, not your personal projects")
 parser.add_argument("--dry-run", action="store_true", help="Don't actually modify the topics")
 args = parser.parse_args()
 
@@ -28,25 +29,29 @@ except KeyError:
 g = Github(token)
 
 try:
-    user_repositories = list(g.get_user().get_repos())
+    print("Getting list of repositories")
+    if args.organization:
+        repositories = [r for r in g.get_user().get_repos(affiliation = "organization_member", visibility = "public") if r.organization.login == args.organization]
+    else:
+        repositories = list(g.get_user().get_repos(affiliation = "owner", visibility = "public"))
     user_id = g.get_user().id
 except BadCredentialsException:
     print("Token is invalid or has the wrong permissions")
     exit(1)
 
-for repo in user_repositories:
+for repo in repositories:
     print(f"> Checking {repo.full_name}:")
 
-    if repo.private or repo.fork or repo.archived:
-        print("Repo is private, a fork or archived. Skipping...")
+    if repo.fork or repo.archived:
+        print("Repo is a fork or archived. Skipping...")
         continue
 
-    if repo.organization is not None:
+    if not args.organization and repo.organization is not None:
         print("Repo belongs to a organization. Skipping...")
         continue
 
-    if repo.owner.id != user_id:
-        print("Repo does not belong to you. Skipping...")
+    if not repo.permissions.admin:
+        print("You don't have admin permissions on the repo. Skipping...")
         continue
 
     topic_list = repo.get_topics()
