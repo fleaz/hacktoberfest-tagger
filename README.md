@@ -17,15 +17,18 @@ folder to create a new virtual environment with all dependencies. If you want to
 
 ## Usage
 ```
-./run.py --help
-usage: run.py [-h] [--dry-run] {add,remove}
+run.py [-h] [--organization ORGANIZATION] [--dry-run] {add,remove}
 
-Quickly add/remove the 'hacktoberfest' topic to all of your public Github projects
+Quickly add/remove the 'hacktoberfest' topic to all of your public Github
+projects
 
 positional arguments:
-  {add,remove}  'add' or 'remove' the topic
+  {add,remove}          'add' or 'remove' the topic
 
 optional arguments:
-  -h, --help    show this help message and exit
-  --dry-run     Don't actually modify the topics
+  -h, --help            show this help message and exit
+  --organization ORGANIZATION, -o ORGANIZATION
+                        Modify topics for an organization, not your personal
+                        projects
+  --dry-run             Don't actually modify the topics
 ```
